@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="icon" href="icon/mdpi-ic_launcher.png" sizes="48x48"/>
+	<link rel="icon" href="icon/hdpi-ic_launcher.png" sizes="72x72"/>
+	<link rel="icon" href="icon/xhdpi-ic_launcher.png" sizes="96x96"/>
+	<link rel="icon" href="icon/xxhdpi-ic_launcher.png" sizes="144x144"/>
+	<title>漢字古今中外讀音查詢</title>
+	<!-- css cdn -->
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css">
+	<!-- css local -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-switch.min.css"> -->
+	<!-- css specified -->
+	<link rel="stylesheet" type="text/css" href="css/mcpdict.style.css">
+	<!-- javascript cdn -->
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+	<!-- javascript local -->
+	<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/bootstrap-switch.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/html5shiv.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/respond.min.js"></script> -->
+	<!-- javascript specified -->
+	<script type="text/javascript" src="js/mcpdict.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container">
+			<div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-head" aria-expanded="false">
+		        <span class="sr-only">拓展菜單</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand navbar-brand-logo">
+				<img alt="漢字古今中外讀音查詢" src="icon/mdpi-ic_launcher.png">
+			  </a>
+			  <a class="navbar-brand navbar-brand-moji" style="font-size:14px">漢字古今中外讀音查詢</a>
+		    </div>
+
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-head">
+		      <form class="navbar-form navbar-right" title="暫未開放註冊">
+		        <div class="form-group nav-form-input">
+		          <input type="email" class="form-control" placeholder="電子信箱" disabled>
+				</div>
+		        <div class="form-group nav-form-input">
+		          <input type="password" class="form-control" placeholder="密碼（目前不開放註冊）" disabled>
+		        </div>
+		        <button type="submit" class="btn btn-success" disabled>登録</button>
+		        <button type="button" class="btn btn-default" disabled>註冊</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+	<div class="container dict-box jumbotron">
+		<ul class="nav nav-tabs">
+		  <li id="dictionary" role="presentation" class="active"><a onclick="tabs('dictionary')">字典</a></li>
+		  <li id="notepad" role="presentation" class><a onclick="tabs('notepad')">生字本</a></li>
+		  <li id="setting" role="presentation" class><a onclick="tabs('setting')">設置</a></li>
+		  <li id="instruction" role="presentation" class><a onclick="tabs('instruction')">說明</a></li>
+		</ul>
+		<div class="container dict-panel">
+			<div id="dictionary-wrapper" style="display: block">
+				<div class="dictionary-query">
+				<div class="container" style="padding-left:0px">
+					<div class="row">
+					  <div class="col-xs-3 col-xs-title"><label for="_search_"><h5>查詢內容</h5></label></div>
+					  <div class="col-xs-7 input-group-sm"><input type="text" class="form-control" id="_search_" placeholder="輸入漢字或讀音" maxlength="10" autofocus></div>
+					  <div class="col-xs-2"><button type="button" class="btn btn-block btn-sm btn-default" style="padding-left:3px; padding-right:3px" onclick="query()">查詢</button></div>
+					</div>
+					<div class="row">
+					  <div class="col-xs-3 col-xs-title"><label><h5>查詢模式</h5></label></div>
+					  <div class="col-xs-9 dropdown">
+						  <button class="btn btn-block btn-sm btn-success dropdown-toggle" type="button" id="dropdown-selector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    漢字
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-selector">
+						    <li><a id="selector-0" onclick="change_mode(0)">漢字</a></li>
+						    <li><a id="selector-1" onclick="change_mode(1)">中古拼音</a></li>
+						    <li><a id="selector-2" onclick="change_mode(2)">普通話</a></li>
+						    <li><a id="selector-3" onclick="change_mode(3)">粵語</a></li>
+						    <li><a id="selector-4" onclick="change_mode(4)">吳語（上海話）</a></li>
+						    <li><a id="selector-5" onclick="change_mode(5)">閩南語</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a id="selector-6" onclick="change_mode(6)">朝鮮語</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a id="selector-7" onclick="change_mode(7)">越南語</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a id="selector-8" onclick="change_mode(8)">日語吳音</a></li>
+						    <li><a id="selector-9" onclick="change_mode(9)">日語漢音</a></li>
+						    <li><a id="selector-10" onclick="change_mode(10)">日語（任意讀音）</a></li>
+						  </ul>
+					  </div>
+					</div>
+					<div class="row">
+					  <div class="col-xs-3 col-xs-title"><label><h5>查詢選項</h5></label></div>
+					  <div class="col-xs-2 col-xs-switch"><input id="switch-0" type="checkbox" checked=""></div>
+					  <div class="col-xs-7 col-xs-sup" style="text-align:right"><i>僅查找《廣韻》</i></div>
+					</div>
+
+					<div class="row">
+					  <div class="col-xs-2 col-xs-switch col-xs-offset-3"><input id="switch-1" type="checkbox" checked=""></div>
+					  <div class="col-xs-7 col-xs-sup" style="text-align:right"><i>繁簡、異體轉換</i></div>
+					</div>
+
+					<div class="row">
+					  <div class="col-xs-2 col-xs-switch col-xs-offset-3"><input id="switch-2" type="checkbox" checked=""></div>
+					  <div class="col-xs-7 col-xs-sup" style="text-align:right"><i>聲調不敏感</i></div>
+					</div>
+				</div>
+				</div>
+				<script type="text/javascript">
+					switch_init();
+				</script>
+
+				<hr>
+
+				<div class="dictionary-result">
+					<div class="result-collector" id="results">
+					</div>
+				</div>
+			</div>
+			<div id="notepad-wrapper" style="display: none">
+				<div class="lead" style="margin-bottom:0px; padding-top:5px; text-align:center; color:#CE000F; font-size:20px">生字本暫未開放</div>
+			</div>
+			<div id="setting-wrapper" style="display: none">
+				<div class="dictionary-setting">
+					<div class="container">
+						<div class="row" style="text-align:left"><span class="h6">普通話顯示方式</span></div>
+						<div class="row dropdown">
+						  <button class="btn btn-block btn-sm btn-default dropdown-toggle" type="button" id="dropdown-pu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    漢語拼音
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-pu">
+						    <li><a id="pu-0" onclick="set_display(0, 'pu')">漢語拼音</a></li>
+						    <li><a id="pu-1" onclick="set_display(1, 'pu')">注音符號</a></li>
+						  </ul>
+						</div>
+						<hr class="a">
+						<div class="row" style="text-align:left"><span class="h6">粵語拼音系統（用於輸入和顯示）</span></div>
+						<div class="row dropdown">
+						  <button class="btn btn-block btn-sm btn-default dropdown-toggle" type="button" id="dropdown-ct" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    香港語言學學會式（粵拼）
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-ct">
+						    <li><a id="ct-0" onclick="set_display(0, 'ct')">香港語言學學會式（粵拼）</a></li>
+						    <li><a id="ct-1" onclick="set_display(1, 'ct')">教院式</a></li>
+						    <li><a id="ct-2" onclick="set_display(2, 'ct')">耶魯式</a></li>
+						    <li><a id="ct-3" onclick="set_display(3, 'ct')">劉錫祥式</a></li>
+						  </ul>
+						</div>
+						<hr class="a">
+						<div class="row" style="text-align:left"><span class="h6">朝鮮語顯示方式</span></div>
+						<div class="row dropdown">
+						  <button class="btn btn-block btn-sm btn-default dropdown-toggle" type="button" id="dropdown-kr" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    諺文
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-kr">
+						    <li><a id="kr-0" onclick="set_display(0, 'kr')">諺文</a></li>
+						    <li><a id="kr-1" onclick="set_display(1, 'kr')">文觀部2000年式羅馬字</a></li>
+						  </ul>
+						</div>
+						<hr class="a">
+						<div class="row" style="text-align:left"><span class="h6">越南語聲調標記方式</span></div>
+						<div class="row dropdown">
+						  <button class="btn btn-block btn-sm btn-default dropdown-toggle" type="button" id="dropdown-vn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    舊式（hòa, thủy）
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-vn">
+						    <li><a id="vn-0" onclick="set_display(0, 'vn')">舊式（hòa, thủy）</a></li>
+						    <li><a id="vn-1" onclick="set_display(1, 'vn')">新式（hoà, thuỷ）</a></li>
+						  </ul>
+						</div>
+						<hr class="a">
+						<div class="row" style="text-align:left"><span class="h6">日語顯示方式</span></div>
+						<div class="row dropdown">
+						  <button class="btn btn-block btn-sm btn-default dropdown-toggle" type="button" id="dropdown-jp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+						    平假名
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-jp">
+						    <li><a id="jp-0" onclick="set_display(0, 'jp')">平假名</a></li>
+						    <li><a id="jp-1" onclick="set_display(1, 'jp')">片假名</a></li>
+						    <li><a id="jp-2" onclick="set_display(2, 'jp')">日本式羅馬字</a></li>
+						    <li><a id="jp-3" onclick="set_display(3, 'jp')">黑本式羅馬字</a></li>
+						  </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="instruction-wrapper" style="display: none">
+				<div class="dictionary-instruction">
+					<div class="container">
+						<span class="h3">開發日誌</span>
+						<hr class="a">
+						<span class="h5">2016-09-21</span>
+						<p>吳語，閩南語，朝鮮語，越南語，日語顯示<br>加粗和灰體字體，換行調整</p>
+						<span class="h5">2016-09-20</span>
+						<p>中古拼音(廣韻 平水韻)，普通話，粵語顯示</p>
+						<span class="h5">2016-09-19</span>
+						<p>實現繁簡、異體轉換，實現限定《廣韻》查找</p>
+						<span class="h5">2016-09-17</span>
+						<p>實現漢字檢索</p>
+						<span class="h5">2016-09-16</span>
+						<p>完成前端基本佈局</p>
+						<hr><hr><br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="container footer-box">
+		&copy;2016 <a href="https://github.com/Phonicavi" target="_blank">phonicavi</a>
+	</footer>
+</body>
+<script type="text/javascript">
+	if ($(window).width() <= 768) {
+		$(".result-collector").height(Math.max(200, $(window).height()-415));
+	}
+	$("#setting-wrapper").css('padding-bottom', Math.max(50, $(window).height()-553));
+</script>
+</html>
