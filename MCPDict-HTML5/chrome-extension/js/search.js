@@ -27,7 +27,7 @@ function _query_(s0, s1) {
 					$("#dropdown-kr").val(), 
 					$("#dropdown-vn").val(), 
 					$("#dropdown-jp").val()];
-	console.log("search: ["+string+"] mode="+mode+", flag="+flag+", setting="+setting+ "...");
+	// console.log("search: ["+string+"] mode="+mode+", flag="+flag+", setting="+setting+ "...");
 
 	// TODO: query the database
 	$.post("http://www.phonicavi.com/dictionary/MCPDict/php/query.php", 
