@@ -20,6 +20,10 @@ td:nth-child(2) {
 	color: #AAAAAA;
 }
 
+.dropdown-menu {
+	min-width: 60%;
+}
+
 @media screen and (min-width: 768px) {
  	.dict-box {
 		width: 600px;
