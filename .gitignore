@@ -6,3 +6,5 @@ publish
 jarlist.cache
 lint.xml
 pretty.py
+MCPDict-HTML5/*.crx
+MCPDict-HTML5/*.pem

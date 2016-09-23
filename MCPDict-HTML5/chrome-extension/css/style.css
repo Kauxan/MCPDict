@@ -1,0 +1,79 @@
+body {
+	width: 300px;
+}
+.main-title {
+	color: #555555;
+	text-align: left;
+	text-indent: 1em;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.dict-box {
+	padding: 2px;
+	margin: 3px;
+	border: 2px dotted #EEEEEE;
+	border-radius: 5px;
+	background-color: transparent;
+}
+.nav-tabs > li {
+	width: 50%;
+}
+.nav-tabs > li > a {
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 1px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+hr {
+	margin: 3px 5px;
+}
+hr.a {
+	margin: 10px 1px;
+}
+
+#dictionary-wrapper {
+	/**/
+}
+#setting-wrapper {
+	padding: 8px 0px 120px 0px;
+}
+
+[class*="col-"] {
+	padding: 3px 1px;
+	text-align: center;
+	font-size: 10px;
+}
+#search-button:hover {
+	cursor: pointer;
+}
+
+
+td:nth-child(1) {
+	vertical-align: top;
+	margin: 1px;
+	padding: 1px;
+}
+td:nth-child(2) {
+	padding-left: 3px;
+}
+.light {
+	color: #AAAAAA;
+}
+.result-collector {
+	padding: 0px;
+}
+.result-card .col-xs-char {
+	text-align: center;
+	color: #CE000F;
+}
+.result-card .char-code {
+	color: #555555;
+}
+.result-card .col-xs-detail {
+	padding: 0px;
+}
+.result-card .col-xs-orthography {
+	padding: 3px 3px;
+}

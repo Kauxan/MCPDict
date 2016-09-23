@@ -1,0 +1,13 @@
+{
+	"name": "MCPDict-Kanji",
+	"description": "漢字古今中外讀音查詢",
+	"version": "1.0",
+	"browser_action": {
+		"default_icon": "res/icon/hdpi-ic_launcher.png",
+		"default_popup": "panel.html"
+	},
+	"permissions": [
+		"http://www.phonicavi.com/dictionary/MCPDict/*"
+	],
+	"manifest_version": 2
+}

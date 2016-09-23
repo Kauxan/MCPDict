@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>漢字古今中外讀音查詢</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/search.js"></script>
+</head>
+<body>
+	<div class="container dict-box jumbotron">
+	  <header class="main-title">
+		<h5>漢字古今中外讀音查詢</h5>
+	  </header>
+	  <ul class="nav nav-tabs">
+	    <li id="dictionary" role="presentation" class="active"><a>字典</a></li>
+	    <li id="setting" role="presentation" class><a>設置</a></li>
+	  </ul>
+	  <div class="container dict-panel">
+	    <div id="dictionary-wrapper" style="display: block">
+	      <div class="dictionary-query">
+	        <div class="container" style="margin:12px 3px 3px 3px">
+	          <div class="row">
+	            <div class="col-xs-10 input-group-sm">
+	              <input type="text" class="form-control" id="_search_" placeholder="请輸入漢字" maxlength="10" autofocus>
+	            </div>
+	            <div class="col-xs-2" id="search-button">
+	              <img src="res/drawable/ic_search.png" alt="Search" width="30px" height="30px">
+	            </div>
+	          </div>
+	          <div class="row">
+	          	<div class="col-xs-6 input-group-sm">
+	          	  <input id="switch-0" type="checkbox">
+	          	  <i>僅查找《廣韻》</i>
+	          	</div>
+	          <!-- </div>
+	          <div class="row"> -->
+	          	<div class="col-xs-6 input-group-sm">
+	          	  <input id="switch-1" type="checkbox" checked>
+	          	  <i>繁簡、異體轉換</i>
+	          	</div>
+	          </div>
+	        </div>
+	      </div>
+	      <hr>
+	      <div class="dictionary-result">
+	        <div class="result-collector" id="results">
+	        </div>
+	      </div>
+	    </div>
+	    <div id="setting-wrapper" style="display: none">
+			<div class="dictionary-setting">
+				<div class="container">
+					<div class="row" style="text-align:left"><span class="h6">普通話顯示方式</span></div>
+					<div class="row dropdown">
+					  <button class="btn btn-block btn-xs btn-default dropdown-toggle" type="button" id="dropdown-pu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+					    漢語拼音
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-pu">
+					    <li><a id="pu-0">漢語拼音</a></li>
+					    <li><a id="pu-1">注音符號</a></li>
+					  </ul>
+					</div>
+					<hr class="a">
+					<div class="row" style="text-align:left"><span class="h6">粵語拼音系統（用於輸入和顯示）</span></div>
+					<div class="row dropdown">
+					  <button class="btn btn-block btn-xs btn-default dropdown-toggle" type="button" id="dropdown-ct" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+					    香港語言學學會式（粵拼）
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-ct">
+					    <li><a id="ct-0">香港語言學學會式（粵拼）</a></li>
+					    <li><a id="ct-1">教院式</a></li>
+					    <li><a id="ct-2">耶魯式</a></li>
+					    <li><a id="ct-3">劉錫祥式</a></li>
+					  </ul>
+					</div>
+					<hr class="a">
+					<div class="row" style="text-align:left"><span class="h6">朝鮮語顯示方式</span></div>
+					<div class="row dropdown">
+					  <button class="btn btn-block btn-xs btn-default dropdown-toggle" type="button" id="dropdown-kr" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+					    諺文
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-kr">
+					    <li><a id="kr-0">諺文</a></li>
+					    <li><a id="kr-1">文觀部2000年式羅馬字</a></li>
+					  </ul>
+					</div>
+					<hr class="a">
+					<div class="row" style="text-align:left"><span class="h6">越南語聲調標記方式</span></div>
+					<div class="row dropdown">
+					  <button class="btn btn-block btn-xs btn-default dropdown-toggle" type="button" id="dropdown-vn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+					    舊式（hòa, thủy）
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-vn">
+					    <li><a id="vn-0">舊式（hòa, thủy）</a></li>
+					    <li><a id="vn-1">新式（hoà, thuỷ）</a></li>
+					  </ul>
+					</div>
+					<hr class="a">
+					<div class="row" style="text-align:left"><span class="h6">日語顯示方式</span></div>
+					<div class="row dropdown">
+					  <button class="btn btn-block btn-xs btn-default dropdown-toggle" type="button" id="dropdown-jp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="0">
+					    平假名
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-right" aria-labelle0by="dropdown-jp">
+					    <li><a id="jp-0">平假名</a></li>
+					    <li><a id="jp-1">片假名</a></li>
+					    <li><a id="jp-2">日本式羅馬字</a></li>
+					    <li><a id="jp-3">黑本式羅馬字</a></li>
+					  </ul>
+					</div>
+				</div>
+			</div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
